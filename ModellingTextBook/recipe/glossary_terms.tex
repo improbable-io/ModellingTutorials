@@ -1,0 +1,134 @@
+\section{Glossary of terms}
+
+We all come from different backgrounds -- and our core tech comes from the
+games-sphere -- and have picked up our modelling jargon from a diverse range of
+sources. It would be helpful if, within the division, we could develop a
+unified language with which to approach problems.
+
+I think this would also be helpful for the wider company to interact with what
+we do on this side of the wall.
+
+\color{red} Tidy up the above \color{black}
+
+\subsection{Model vs. Simulation}
+
+\noindent \textbf{Model:} A representation, or network of interconnected representations,
+of a concept/process or multiple concepts/processes.
+\textit{Modelling a process implies you have discarded detail which is
+extraneous to the problem under-consideration and constructed a (computational)
+representation at an appropriate level of abstraction for the problem.}
+
+\noindent \textbf{Simulation:} a model which has some proven legitimacy within some concretely
+defined scope to claim to represent (i.e. simulate) some real concept or
+process (ideally with some quantification of error and uncertainty).
+\textit{Simulating a process implies you are augmenting your modelling effort with a
+good standard of calibration and validation. For a simulation, the level of
+modelling abstraction will be determined by both the problem \& the available
+data.}
+
+\subsection{Time}
+
+\noindent \textbf{Real-time:} Time is represented in the model as it is in the real-world
+(albeit potentially sped-up) - consequently the progress of the model is
+dependent upon time.  \textit{Modelling a system which is active Mon, Tues \& Thurs, but
+dormant on Wed - would mean the hardware sits idle for the Wed part of the
+simulation.}
+
+\noindent \textbf{Simulated time:} Time in the model is dependent upon program progress. Methods
+such as discrete-time and constant step duration iteration are examples of the
+use of simulated time.  \textit{In the above example, we can use simulated time to
+ensure the hardware will skip over the idle Wed and jump straight to Thursday’s
+work. Thereby we can solve problems as fast as the computer can compute,
+independently of problem’s relationship to real-world time.}
+
+\subsection{Types of systems}
+
+\noindent \textbf{Complex system:} A system which displays emergence -- features
+at the collective-scale which develop from the interactions of a large number
+of individuals at the unit-scale.
+
+\noindent \textbf{Complex adaptive system:} A complex system in which the individuals at the
+unit-scale will adjust their behaviour dependent upon the features that develop
+at the collective scale. \textit{Economics is the canonical complex adaptive system -
+the actors who comprise an economy will modify their behaviour in response to
+the emergent features of it.}
+
+\noindent \textbf{Technical:} Systems whose scope is non-behavioural - i.e. limited to purely
+scientific or technical processes.
+
+\noindent \textbf{Social:} Systems whose scope is (almost) entirely behavioural.
+
+\noindent \textbf{Socio-technical:} Systems in which the phenomena of interest involve the
+interaction of behavioural and technical behaviours / processes.
+
+\subsection{Types of model}
+
+\noindent \textbf{Discrete event:} A model which uses a discrete event treatment of
+time. Processors work through their task immediately, one after another --
+meaning that one processor may be ahead or behind another -- there are various
+schemes which deal with this disparity in ways that may be more or less
+suitable for a given problem.
+
+\noindent \textbf{Discrete time:} A time-stepping scheme whereby each iteration covers a small
+change in time and for each iteration there is a set of tasks that must be
+worked through.
+
+\noindent \textbf{Live-streaming:} A model that is driven by real-world data - literally just a
+visualisation of the real world phenomena.  \textit{E.g. the map on the uber app - the
+position of the icons representing the cars is determined by the live-streamed
+position of the cars in the real world -- there is no computation or logic used
+in their placement.}
+
+\noindent \textbf{Live-action:} A model which (likely) runs in real-time and allows users to
+play-along to evaluate the consequences of a given action. \textit{In non-deterministic
+models this evaluation will be crude (as repeating the computational experiment
+requires the ‘player’ to repeat the action over and over).  SpatialOS (as a
+games platform) is clearly well suited to these. Note that validation and
+calibration is very difficult - one cannot be sure that the ‘player’ will
+behave in a manner that has been anticipated and for which the model has been
+validated.}
+
+\noindent \textbf{Speculative:} A model which is, for all intents and purposes, un-validatable
+either because the data isn’t available or because the scope of the problem is
+so wide that the range of possible outcomes is as big as to be impossible to
+prove valid. \textit{This is not to cast aspersions on such a model’s
+usefulness - indeed the competition to such a model may be a domain expert sat
+in a room saying ‘I reckon’ in which case such models will almost certainly
+provide insight.}
+
+\subsection{Modelling jargon} 
+
+\noindent \textbf{State:} The current condition of the model, defined through the
+values of each of the model parameters. A capture of the model’s state should
+behave like a checkpoint and contain all the requisite information to restart
+the model from the captured point.  \textit{In Spatial, ‘snapshots’ are used to capture
+the model state.}
+
+\noindent \textbf{Determinism:} A given set of conditions will develop in the exact same way every
+time the model is run.  A deterministic model will produce exactly the same
+answer every time it is run from the same starting state.
+
+\noindent \textbf{Stochasticity:} Randomness - generally a stochastic decision will be made by
+taking a random sample from a probability distribution with which we have
+represented a behaviour.  \textit{A stochastic model will produce a different solutions
+when run from the same initial state. The modeller must take steps to ensure a
+given solution returned by the model is in some way representative  - and not
+an outlier. For example, a random sample of me asking what you had for
+breakfast yesterday will not necessarily equip me to make sweeping statements
+about your general breakfast habits - though of course it’s better than
+nothing!}
+
+\noindent \textbf{Fidelity:} Can be thought of a bit like resolution - how the unit-scale in the
+model compares to the way the problem plays out in the real-world.  \textit{We may
+model a pile of sand as a single object - a pile (low fidelity), or we may
+model each grain of sand (high fidelity). We could further model the pile at an
+atomic-level or smaller, the chosen model fidelity must be motivated by the
+problem being solved (and the available validation data in the case of
+simulations).}
+
+\noindent \textbf{Abstraction:} The process of suppressing more complex details in order to focus
+on the mechanisms that are important to tackling the problem as posed.
+
+\noindent \textbf{Markov:} Future states may be dependent on the current state but are not
+dependent on previous ones.
+
