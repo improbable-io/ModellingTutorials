@@ -1,0 +1,82 @@
+\section{An approach to modelling - Cheatsheet}
+
+\subsection{The ten steps to modelling}
+
+Following these ten steps will ensure you consider everything you need to
+consider.  In the examples presented in this booklet we will step through them
+explicitly -- clearly the experienced modeller will do a lot of these steps
+implicitly. However, here at Improbable we have a specific product (SpatialOS)
+so there may be a tendency to put the cart before the horse (i.e. start with a
+modelling approach -- spatial -- and working back to a problem). Of course, an
+element of this is necessary to help our clients understand how we can help
+them, but it is worthwhile always having a structured approach to modelling in
+one's back pocket.
+
+\subsubsection{1. Problem formulation}
+\begin{itemize}
+\item What is the problem
+\item What is the hypothesis
+\item Who owns the problem
+\item Who are the secondary, tertiary... stakeholders
+\item What is our role, what does success look like?
+\end{itemize}
+
+\subsubsection{2. System identification and decomposition}
+\begin{itemize}
+\item Inventory
+\begin{itemize}
+\item Important (and relevant) concepts
+\item Actors and objects (and how these relate to data we can observe)
+\item Key measurements and performance indicators
+\item Behaviours
+\item States and properties
+\end{itemize}
+\item Structure
+\begin{itemize}
+\item States and behaviours of system components
+\item Interactions between different system components
+\item How behaviour at boundaries will be dealt with
+\item How behaviours may be grouped into iterations, timesteps etc.
+\end{itemize}
+\item Consider data availability -- this will determine
+\begin{itemize}
+\item Model fidelity
+\item Flexibility of future model for calibration and validation
+\item How model is structured to answer the problem
+\end{itemize}
+\end{itemize}
+
+\subsubsection{3. Concept and model formalisation}
+\begin{itemize}
+\item Identify the class of model (governed by the problem and available data)
+\item Research how others have tackled similar problems previously (don't reinvent 
+the wheel)
+\item Concretely define concepts in a rigorous framework
+\item Indentify appropriate data structures to codify concepts
+\item Define an ontology
+\item Model and parametrise behaviours and interactions formally (using maths / logic)
+\item Determine the model narrative using pseudo code (structure dependent upon the chosen time scheme)
+\item Don't forget input/output mechanisms often via observation operators
+\end{itemize}
+
+
+\subsubsection{4. Boundary and initial conditions}
+\begin{itemize}
+\item Models generally have dependecy upon previous state -- good choice of initial state is vital
+\item Consider likely spin-up duration and behaviour
+\item Think carefully about how to model external influence at system boudnaries
+\item Be explicit about these treatments thay will likely strongly impact model 
+results
+\end{itemize}
+
+\subsubsection{5. Software implementation}
+
+\subsubsection{6. Model verification}
+
+\subsubsection{7. Experimentation}
+
+\subsubsection{8. Data analysis}
+
+\subsubsection{9. Model validation}
+
+\subsubsection{10. Model use}

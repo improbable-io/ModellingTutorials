@@ -1,0 +1,40 @@
+\section{System identification and decomposition}
+
+Thankfully, we all studied and remember A-level physics (!) and therefore
+have a good amount of domain knowledge already at our fingertips. In this case, 
+the system boundaries are (unusually) well defined -- we wouldn't expect any
+interaction between objects inside and outside the solar system - so we can 
+limit our modelling to that extent. The main system components are the planets,
+the PBH and the Sun - these can be grouped as 'massive bodies' (i.e. bodies that
+have mass). My intuition, at this stage, is that satellites are unlikely to play
+a big role in the problem (Mercury has no known satellites -- and by the time
+the PBH is close to Earth, it's too late for the Moon to have much impact). Of
+course a rigorous modelling approach would support this assertion with appropriate
+computation.
+
+The important states of our massive bodies are their location, $\vec{x}(t)$, and 
+velocity, $\vec{u}(t)$. Massive bodies interact via the gravitational force their
+mass exerts, we recall (!) that the gravitational force, $\vec{F_{g}}$, between
+two bodies with masses $m_1$ and $m_2$ separated by $\vec{r}$ is
+\begin{equation}
+\vec{F_{g}} = - \frac{G m_1 m_2 \vec{r}}{|\vec{r}|^3}.
+\end{equation}
+We further recall (!) that an unbalanced force acting on a body will induce an
+acceleration
+\begin{equation}
+\vec{F_{g}} = m \vec{a},
+\end{equation}
+and that this acceleration can be used to update the velocity and position of
+the body. Thus, $\vec{a}(t)$ is an intermediate property of our massive bodies 
+that is important to keep track of, and the seperation distance between pairs
+of bodies is an important factor controlling the extent of their interaction.
+
+In this case, timestepping would seem a sensible temporal scheme, we define a
+timestep length, $\Delta t$ (often just called $dt$), at each iteration we'll
+step forward in time, compute the resultant gravitational forces acting on
+each body, compute the acceleration induced on each body, update the velocity
+of each body and finally compute the new position of each body. Note that this
+temporal discretisation induces an error (a `discretisation error' no less) --
+we are assuming that the acceleration of a body is constant for the duration of
+the timestep, where patently this is false. We can ultimately measure the impact
+of this error by exploring the effect of adjusting $dt$ in our final model.

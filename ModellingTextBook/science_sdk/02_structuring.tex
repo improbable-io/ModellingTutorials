@@ -1,0 +1,30 @@
+\section{Structuring models for the ScienceSDK}
+
+Given the intent of this booklet as an introduction to modelling on the
+ScienceSDK, let's look more closely at how to formalise our model to best suit
+the structure of that tool. See chapter XXX for an introduction to the
+ScienceSDK. One of the core concepts of the ScienceSDK is to present to the
+modeller a familiar object orientated programming paradigm (rather than the
+message passing paradigm of SpatialOS which is likely to be less familiar to
+the modelling community).  Consequently, the key programming unit in ScienceSDK
+is the \textit{Migratable}.  A \textit{Migratable} is an object which is
+capable of being moved around in entirety to different processors.
+\textit{Migratable} objects are constructed with corresponding
+\textit{Reference} objects which are constructed for the user by the
+ScienceSDK. \textit{Migratables} refer to one another indirectly via the
+\textit{Reference}s, which provide pointers to the objects themselves, on
+whichever processor they may currently be residing. A migratable is
+consequently the smallest unit of code in the ScienceSDK paradigm.
+
+So how can we structure concepts and models around this paradigm? Well the
+obvious mapping is the tangible agents and objects to migratables, with more
+abstract objects -- for example observation operators -- also treated
+similarly.  The spatial paradigm is an intrinsic characteristic of the
+underlying SpatialOS treatment of objects (spatial location is a key
+characteristic used for load-balancing) but ScienceSDK abstracts this away from
+the user -- where it can be appropriately applied to a migratable it may be
+defined by the modeller, where inappropriate it shouldn't be defined, allowing
+the ScienceSDK to load-balance more effectively.
+
+
+

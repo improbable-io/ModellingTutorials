@@ -1,0 +1,60 @@
+\section{System identification and decomposition}
+
+The next step in approaching the model is to formulate a generativist 
+description of the problem. This means the system must be identified and bounded,
+then decomposed into the constituent components that we will need to represent in
+order to simulate the behaviour of interest of the system under anaylsis.
+
+At this stage we're not looking to formalise the representation of the system
+or its constituent components -- that is the next step -- resist the temptation
+yet to think about \emph{how} you will model things and focus instead on 
+\emph{what} you will need to model in order to tackle the problem as it was
+defined in the previous step. Hopefully this illustrates the importance of
+the previous step, if the problem identified is "how high will this ball bounce"
+we can, at this stage decide that we need not capture in the model that the ball
+happens to be red.
+
+It is at this stage that we, as modellers, need to seek expert input. It is not
+reasonable to expect us to know everything (or indeed anything) about every
+problem with which we are presented. Of course our modeller's intuition will
+invariably feed in at this stage, but this should be augmented and verified
+through conversations with domain specialists and other modellers (who may
+have differing backgrounds and thus a different intuition) and reading of 
+academic papers, websites etc. etc. Remember that there is nothing new under the
+sun, and the overwhelming liklihood is that someone will have tackled this, or
+a similar problem, before -- take every opportunity to learn from their conclusions..
+
+This step is concerned with \textbf{inventory} and \textbf{structure}. The former
+is concerned with identifying the boundaries and components of the system and their 
+important states etc. 
+
+\textbf{Inventory} - identify the following:
+\begin{itemize}
+\item Important (and relevant) concepts
+\item Actors and objects (and how these relate to data we can observe)
+\item Key measurements and performance indicators (linked to the problem!)
+\item Behaviours
+\item States and properties
+\end{itemize}
+
+The structuring phase is then concerned with how the components interact with 
+one another and the system boundary, and how we may most appropriately handle
+spatio-temporal discretisation.
+
+\textbf{Structure} - consider the following:
+\begin{itemize}
+\item States and behaviours of system components
+\item Interactions between different system components
+\item How behaviour at boundaries will be dealt with
+\item How behaviours may be grouped into iterations, timesteps etc.
+\end{itemize}
+
+Much of the goal of this step is to consider the appropriate model fidelity.
+This encapsulates a host of factors that must be appraised, and this process
+will, to some extent bleed through into the next modelling step.
+
+In addition it is worth, at this stage, thinking about the data you have (or
+are likely to be able to get), is the modelling fidelity appropriate to the
+fidelity of the data? How will the model be structured to facilitate validation?
+What sources of uncertainty are likely to exist and how will we minimise, quantify
+and communicate it?

@@ -1,0 +1,42 @@
+\section{Concept and model formalisation}
+
+Having identified a conceptual framework for the system and its components the
+next step is to formalise it. To a large extent, the way in which we choose to
+formalise the concepts will be dependent upon the class of problem with which
+we are presented and the modelling paradigm we decide to employ. For example,
+to study the migratory behaviour of herds or flocks of animals we may model
+each individual animal as a decision making agent, or we may model the whole
+group as a continuum -- with a spatially varying density as a function
+representative of the local density of animals. Both approaches are valid, with
+the degree to which they are suitable contingent upon the problem being
+addressed and the fidelity of the calibration and validation data available.
+
+Now that the overarching modelling strategy has been  determined, it is time to
+concretely define the concepts, agents, objects and behaviours in a rigorous
+framework.  This will generally involve an amalgam of mathematics and
+pseudo-code. For uncertain or stochastic parameters, decisions must be made on
+the appropriate (frequency / probability) distributions to deploy and in
+general, judgements should be made on suitable parametrisations and efficient
+data structures to represent the concepts that have been identified.
+
+An important element of this stage is to define a governing ontology for the
+model -- that is a formal naming convention for all elements (agents, objects,
+properties, behaviours...). There are a few things to bear in mind here:
+Firstly it is generally best to adopt and adapt conventions from the existing
+literature; unless there is a compelling reason, there is little benefit in
+reinventing the wheel. This facilitates easier communication of concepts with
+domain experts and may enable easier coupling and comparison of models in the
+future. Secondly this will become an important mechanism for linking real-world
+data with its modelled counter-part. This integration will form a foundation
+for our calibration and validation operations in due course.
+
+Remember to always link back the problem at hand to ensure that the model, as 
+constructed, will actually answer the pertinent questions as asked and provide 
+pertinent insights. An important part of this is to think about the experiments
+that will be run using the model and the observations that will be made on those
+experiments. Observation operators need to be defined, and the mechanism by
+which they link to (and are compared to) the real-world data formalised. How
+will uncertainty in the real-world data be integrated into the model with it? Does
+the available data relate to something directly modelled or some kind of hidden or 
+proxy element?
+

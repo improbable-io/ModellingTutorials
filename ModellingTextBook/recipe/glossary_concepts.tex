@@ -1,0 +1,214 @@
+\section{Glossary of concepts}
+
+\subsection{Complexity and abstraction}
+
+While the ultimate goal of computational modelling
+may be to recreate reality in as accurate a way as possible, limits in
+computational resource render this an impossible goal. Rather, engineers must
+identify their objective, recognise the limitations of their computational
+resource and select models and strategies which (within computational budget)
+will help illuminate the behaviour of interest: For example, if we wish to
+model the physics of a bouncing ball, we do not need to consider it’s colour,
+or what country it is in.
+
+\subsection{Hypothesis driven modelling}
+
+Since building tractable models therefore requires
+simplification, fundamentally the construction of models must be driven by
+their intended use. For scientists this is to provide specific insight, for
+designers this is to develop a product that is to be made. We model a phenomena
+based upon real-world observations but the complexity of the real-world
+precludes us from including all possible information in our model. In omitting
+certain information when constructing the model we, by definition, limit its
+utility. Understanding the simplifications we make when constructing a model is
+vital, as pushing the model beyond the point at which the simplifying
+assumptions hold, will produce inaccurate results (with potentially dire
+consequences - if, for example, we’re using those results to design an
+airplane!).
+
+When a model is used when simplifying assumptions no longer hold there may be
+two outcomes. In the best case, our model won’t produce an answer -- asking a
+physics model of a bouncing ball what colour the ball is just won’t produce an
+answer. In the worst case, we will be misled -- a model designed to show how
+commuters respond to a closed underground station might be tempting to use to
+study how travellers would respond to a bombed station, but the commuter’s
+response to a bomb will be different to a routine closure, even though both
+relate behaviour to the inaccessibility of a given station.
+
+\subsection{Verification, calibration and validation}
+
+Building the model is the easiest and
+quickest part of modelling. Verification, calibration and validation ensure
+that the model we have built relates to the phenomena we were modelling in a
+way that generates the insights we were seeking. A model that has not been
+verified and validated generally has very limited utility (at best it may
+‘raise interesting questions’ but there’s no guarantee that those questions are
+reflective of the real-world scenario).
+
+Verification of computational models simply ensures that the mathematical
+representation of the behaviours we intended to capture have been encoded
+accurately - that we haven’t divided by two when we should have multiplied by
+two. This can generally be done mechanically using unit-testing and other code
+testing techniques.
+
+In defining behaviours we may know the structure of the behaviour, but there
+may be free parameters that need to be determined. Consider a thermometer, the
+mercury rises and falls with temperature, but ascribing the height of the
+mercury to the correct specific temperature is the process of calibration.
+
+While calibration is data led - we tune parameters in the model so it better
+matches the data, validation is model led - we run the whole model (which
+comprises the set of parameters) and see if its output matches the
+observations. The difference is subtle, but validation checks the whole system
+is working together correctly and inoculates against over-fitting.
+
+Consider our tube-system model, we might adjust our model to perfectly match a
+dataset we had from Balham station being closed one Sunday, then validate
+against separate data of Bank being closed. WIthout this second step, how can
+we be sure that we haven’t set the behaviour to perfectly recreate the results
+when a small zone 3 station is closed on a Sunday - we may have over-fitted our
+model to specific behaviour unique to our one specific calibration data-set and
+thus compromised the generality of the model to capture other behaviours.
+
+While often models are thought of as a product - it is built, validated,
+packaged and sold. In fact sophisticated models are living, cyclical things:
+Running the model raises questions - behaviour is observed, but is this
+behaviour a function of the model (i.e. due to the simplifying assumptions
+we’ve had to make) or is a function of the phenomena (i.e. the model is telling
+us something useful). So we improve and the model and validate the new set up,
+but as our understanding increases so we keep improving and validating. In this
+way a model is more like a city - it’s never fully built but it is continuously
+improved; districts are rejuvenated, the city grows etc.
+
+\subsection{Model boundaries} 
+
+It is inescapable when building complex models that we will
+find ourselves having to specify boundaries around the system of interest in
+order to make it tractable. For example, with our tube-network example,
+passengers will get on the tube at the Heathrow stations - this creates an
+interface with global air-traffic, which is linked to meteorology, which is
+linked to… which is linked to… Suddenly our tube network model has a global
+atmospheric model attached to it and the compute power required has increased
+by multiple orders of magnitude. Instead of modelling the Heathrow air traffic,
+we set the system boundary at the interface with the tube and simulate the
+contribution these passengers make by using a boundary condition - a
+cheap-to-compute simulator of the influx of passengers we expect from Heathrow.
+These boundary conditions must be carefully considered, poor assumptions and
+modelling of these can propagate through the model and compromise the results.
+
+A special case of boundary conditions are initial conditions. Future behaviour
+generally has some link to current state - in the real world, our current state
+has evolved slowly from the start of the universe, as modellers we don’t have
+time to go back that far! Thus we have to pick a sensible starting position and
+potentially give the model a chance to ‘spin-up’. For our tube model, perhaps
+we start the model at 3 a.m. with no passengers - most of the lines are closed
+and those that are open will be fairly empty naturally. To get an accurate
+simulation of night-time tube usage we would then need to wait to the next
+simulated night, when the initial condition of no usage the night before has
+had a chance to average out.
+
+\subsection{Model coupling} 
+
+Clearly if Heathrow will have a model of how frequently flights
+land and take off, it would seem natural just to couple it to the tube-system
+model. In practice this is very difficult due to differences in the nature of
+the systems being coupled the models will generally have different
+architectures, abstractions and be built to supply different insights. This is
+something we hope to make easier with ScienceOS.
+
+One thing to be careful of here is that as models are coupled as modules in a
+larger simulation, the model complexity increases very rapidly. Assumptions
+made by the designers of the ‘other’ models must be understood. The way those
+assumptions will interact with the simplifications in other modules will also
+need to be understood. Validation is, again, key.
+
+\color{red} Timestepping, fidelity, spatial resolution etc. \color{black}
+
+\subsection{What can we do with models} 
+
+2nd order effects Emergent behaviour is a term
+used to describe complex system-level behaviours that emerge from relatively
+simple component-level ones. For example, the economy comprises a host of
+individual actors who (according to the capitalist model) act in their
+self-interest this causes surges and recessions at the world-economy level
+(each actor responds to the emergent macro-level behaviour of the economy and
+adapts their behaviour). In these complex adaptive systems, additional effects
+may also develop. Every action has an effect, and those effects have
+consequences -- picture a line of dominoes, we only push the first one but the
+result is that the last in the chain is knocked over.
+
+In rich, complicated models it is usual to see these causal chains develop, in
+fact this is one of the key reasons we have interest in, and develop such
+models. However, we must exercise caution - if the new behaviours that develop
+are not within the scope of the modelling assumptions that have been made, they
+will not have empirical validity. For example, returning to our example of a
+tube station closure, we may notice that many people circumvent the closure by
+walking all or part of their journey, leading to an large increase in
+pedestrian traffic. In reality of course this is true - to an extent - but
+people will also catch buses and cycle - if these behaviours aren’t encoded
+into our simulation then we may draw the wrong conclusion - that everyone
+walks. Clearly this is a trivial example, but in rich models it is an important
+consideration to keep in mind. The correct way to handle second order effects
+in this situation is to note ‘It looks like this has the additional effect of
+massively increased pedestrian traffic’ see that this is worth investigating
+then auditing the model you have to determine ‘is this model still suitable for
+investigating increased foot traffic due to tube closure’. In this case we will
+conclude that bus riding and cycling are addition behaviours that must be
+considered and encoded (and validated) to answer such a question.
+
+\subsection{Determinism and modelling under uncertainty} 
+
+Deterministic models are those
+which consistently and repeatedly produce the same results. A model of a
+bouncing ball could reasonably be modelled deterministically, within some
+negligible margin of error repetitions of the dropping experiment in real-life
+will produce the same result, so my model of it should also produce the same
+result. Consider instead dropping a rugby ball, infinitesimally small
+adjustments in the way we drop the ball will result in very large differences
+in where the ball ends up after its first bounce. Using a deterministic model
+to predict the behaviour of the latter would provide little useful insight.
+
+In complex and dynamical systems, in which non-linear and multi-scale processes
+interact, uncertainty can exist in many forms. Often uncertainty is introduced
+through the presence of randomness (for example turbulent eddies in fluids)
+that is inherent to the (physical) processes being modelled, and is impossible
+to describe in a deterministic way. While sometimes it arises because there is
+an intrinsic lack of knowledge relating to either the process or the parameters
+being modelled. Correctly dealing with these uncertainties is a significant
+challenge.
+
+One of the frequent shortcomings of computational modelling in practice is
+that, while the outputs that are being provided to decision-makers are fairly
+simple (for example a plots and graphics) they bely great complexity in the
+underlying model and there may be great uncertainty in the information and data
+from which they were generated. Compounding this, computational modelling is
+often an intricate procedure, and those who develop and run the models are
+generally not the same as those who use the results to make project decisions.
+Uncertainty in the inputs, randomness in the physical processes and limitations
+of the models (either from wrong / incomplete equations or discretisation
+errors) are often not communicated alongside the results, meaning that it is
+all too easy for this uncertainty to be (inadvertently) neglected and for it to
+go unaccounted for. Simply put, it is imperative that results which are to be
+used to determine the viability of – and make design decisions on – a
+multi-million pound industrial project are presented with appropriate
+‘error-bars’.
+
+\subsection{Visualisation} 
+
+Models themselves are generally hidden to all but the people who
+build and maintain them. With smart enough communication of the results it is
+very easy to get buy in from people who are either not thinking critically or
+who do not possess enough domain expertise to be analytical. This makes it easy
+to accidentally miscommunicate or intentionally manipulate those people.
+Visualisation is a specialist subject area in its own right.
+
+One crucial question is; as models tend toward the appearance of representing
+the real world, how do we communicate model results in such a way that makes
+clear the limitations of the simulation?
+
+Defining the problem It would be good to condense the discussions that will
+ensue over the next few weeks (while we pick a problem we use internally) into
+some sort of problem paradigm that we can get our hands around, communicate to
+customers and for which we have concrete examples and helpful metaphors.
+
+
